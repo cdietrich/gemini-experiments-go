@@ -10,10 +10,9 @@ import (
 )
 
 type BashTool struct {
-	WorkDir       string
-	Timeout       time.Duration
-	AllowedCmds   map[string]bool
-	BlockedCmds   map[string]bool
+	WorkDir     string
+	Timeout     time.Duration
+	BlockedCmds map[string]bool
 	RequirePrompt bool
 }
 

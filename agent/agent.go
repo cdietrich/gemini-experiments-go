@@ -119,6 +119,9 @@ func (a *Agent) Run(ctx context.Context, input string) (string, error) {
 			return text, nil
 		}
 
+		if len(resp.Candidates) == 0 {
+			return "", fmt.Errorf("no candidates in response")
+		}
 		candidate := resp.Candidates[0]
 		if candidate.Content != nil {
 			a.history.AddModelMessage(candidate.Content.Parts)

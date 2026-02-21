@@ -50,7 +50,8 @@ func (t *ReadFileTool) Execute(ctx context.Context, args map[string]any) (string
 	fullPath := filepath.Join(t.WorkDir, path)
 	fullPath = filepath.Clean(fullPath)
 
-	if !strings.HasPrefix(fullPath, filepath.Clean(t.WorkDir)) {
+	cleanWorkDir := filepath.Clean(t.WorkDir)
+	if !strings.HasPrefix(fullPath, cleanWorkDir+string(os.PathSeparator)) && fullPath != cleanWorkDir {
 		return "", fmt.Errorf("path is outside working directory")
 	}
 
@@ -128,7 +129,8 @@ func (t *WriteFileTool) Execute(ctx context.Context, args map[string]any) (strin
 	fullPath := filepath.Join(t.WorkDir, path)
 	fullPath = filepath.Clean(fullPath)
 
-	if !strings.HasPrefix(fullPath, filepath.Clean(t.WorkDir)) {
+	cleanWorkDir := filepath.Clean(t.WorkDir)
+	if !strings.HasPrefix(fullPath, cleanWorkDir+string(os.PathSeparator)) && fullPath != cleanWorkDir {
 		return "", fmt.Errorf("path is outside working directory")
 	}
 
@@ -194,7 +196,8 @@ func (t *EditFileTool) Execute(ctx context.Context, args map[string]any) (string
 	fullPath := filepath.Join(t.WorkDir, path)
 	fullPath = filepath.Clean(fullPath)
 
-	if !strings.HasPrefix(fullPath, filepath.Clean(t.WorkDir)) {
+	cleanWorkDir := filepath.Clean(t.WorkDir)
+	if !strings.HasPrefix(fullPath, cleanWorkDir+string(os.PathSeparator)) && fullPath != cleanWorkDir {
 		return "", fmt.Errorf("path is outside working directory")
 	}
 
