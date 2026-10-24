@@ -228,7 +228,6 @@ func (a *Agent) promptModelSwitch() string {
 	fallbackModels := []string{
 		"gemini-3.8-flash",
 		"gemini-3.5-flash-lite",
-		"gemini-3.1-flash-lite",
 	}
 
 	fmt.Println("\nSwitch to a different model? (each has separate quota)")
