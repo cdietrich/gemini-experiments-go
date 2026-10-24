@@ -31,7 +31,7 @@ export GEMINI_API_KEY=your-api-key
 ./gemini-agent
 
 # Options
-./gemini-agent -model gemini-2.0-flash -workdir ./src
+./gemini-agent -model gemini-3.6-flash -workdir ./src
 ./gemini-agent -clear  # Clear conversation history
 ```
 
@@ -57,13 +57,21 @@ When a tool is called, you'll be prompted:
 
 ### Models
 
-Default model is `gemini-3-flash-preview`. Available models:
+Default model is `gemini-3.8-flash`. Override it with `-model`:
 
 | Model | Input/1M | Output/1M | Notes |
 |-------|----------|-----------|-------|
-| gemini-3-flash-preview | $0.50 | $3.00 | Latest, most capable |
-| gemini-2.5-flash | $0.30 | $2.50 | Good balance |
-| gemini-2.0-flash | $0.10 | $0.40 | Most cost-effective |
+| gemini-3.8-flash | $0.75 | $3.75 | Default, free tier eligible |
+| gemini-3.6-flash | $0.75 | $3.75 | Previous-gen Flash, free tier eligible |
+| gemini-3.5-flash-lite | $0.30 | $2.50 | Cheapest current Flash-Lite |
+| gemini-3.1-flash-lite | $0.25 | $1.50 | Older, supported until May 2027 |
+| gemini-3.1-pro-preview | $2.00 | $12.00 | Pro tier, no free tier |
+| gemini-4-argon | $2.00 | $10.00 | Flagship reasoning, no free tier |
+
+Prices are paid-tier Standard rates as of October 2026. Flash pricing is
+promotional through December 31, 2026 and doubles on January 1, 2027. See
+the [pricing page](https://ai.google.dev/gemini-api/docs/pricing) for the
+current numbers.
 
 ## Commands
 
@@ -83,14 +91,15 @@ Default model is `gemini-3-flash-preview`. Available models:
 | `grep` | Search file contents with regex |
 | `list_dir` | List directory contents |
 
-## Rate Limits (Free Tier)
+## Rate Limits
 
-| Model | RPM | RPD |
-|-------|-----|-----|
-| gemini-3-flash-preview | 15 | 20 |
-| gemini-2.0-flash | 15 | 1500 |
+Free-tier quotas are per model and change frequently, so this project does
+not hardcode them. See the
+[rate limits page](https://ai.google.dev/gemini-api/docs/rate-limits) for
+current RPM/RPD values.
 
-Each model has separate quotas. The agent will prompt to switch models when quota is exceeded.
+Each model has a separate quota. When one is exhausted, the agent prompts you
+to switch to another model instead of failing the request.
 
 ## Project Structure
 

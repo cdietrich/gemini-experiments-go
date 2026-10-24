@@ -22,7 +22,7 @@ import (
 
 func main() {
 	clearFlag := flag.Bool("clear", false, "Clear conversation history")
-	modelFlag := flag.String("model", "gemini-3-flash-preview", "Model to use")
+	modelFlag := flag.String("model", "gemini-3.8-flash", "Model to use")
 	workDirFlag := flag.String("workdir", ".", "Working directory")
 	flag.Parse()
 
