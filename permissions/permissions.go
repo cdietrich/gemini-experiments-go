@@ -41,14 +41,25 @@ func (m *Manager) load() {
 	if err != nil {
 		return
 	}
-	json.Unmarshal(data, &m.permissions)
+	if err := json.Unmarshal(data, &m.permissions); err != nil {
+		fmt.Fprintf(os.Stderr, "Warning: error parsing permissions file: %v\n", err)
+	}
 }
 
 func (m *Manager) save() {
 	dir := filepath.Dir(m.path)
-	os.MkdirAll(dir, 0755)
-	data, _ := json.MarshalIndent(m.permissions, "", "  ")
-	os.WriteFile(m.path, data, 0644)
+	if err := os.MkdirAll(dir, 0755); err != nil {
+		fmt.Fprintf(os.Stderr, "Warning: error creating permissions directory: %v\n", err)
+		return
+	}
+	data, err := json.MarshalIndent(m.permissions, "", "  ")
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Warning: error marshaling permissions: %v\n", err)
+		return
+	}
+	if err := os.WriteFile(m.path, data, 0644); err != nil {
+		fmt.Fprintf(os.Stderr, "Warning: error saving permissions: %v\n", err)
+	}
 }
 
 func (m *Manager) Get(tool string) PermissionMode {

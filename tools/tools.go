@@ -3,6 +3,7 @@ package tools
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 
 	"google.golang.org/genai"
 )
@@ -59,7 +60,7 @@ func (r *Registry) FunctionDeclarations() []*genai.FunctionDeclaration {
 func (r *Registry) Execute(ctx context.Context, name string, args map[string]any) (string, error) {
 	t, ok := r.Get(name)
 	if !ok {
-		return "", nil
+		return "", fmt.Errorf("unknown tool: %s", name)
 	}
 	return t.Execute(ctx, args)
 }

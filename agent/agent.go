@@ -69,7 +69,7 @@ func WithPermissions(perms *permissions.Manager) Option {
 func New(client *genai.Client, registry *tools.Registry, opts ...Option) *Agent {
 	a := &Agent{
 		client:   client,
-		model:    "gemini-3-flash-preview",
+		model:    "gemini-3.6-flash",
 		registry: registry,
 		maxTurns: 20,
 		systemMsg: `You are a helpful coding assistant with access to tools for file operations, shell commands, and code search.
@@ -119,6 +119,9 @@ func (a *Agent) Run(ctx context.Context, input string) (string, error) {
 			return text, nil
 		}
 
+		if len(resp.Candidates) == 0 {
+			return "", fmt.Errorf("no candidates in response")
+		}
 		candidate := resp.Candidates[0]
 		if candidate.Content != nil {
 			a.history.AddModelMessage(candidate.Content.Parts)
@@ -223,9 +226,8 @@ func (a *Agent) generateWithRetry(ctx context.Context) (*genai.GenerateContentRe
 
 func (a *Agent) promptModelSwitch() string {
 	fallbackModels := []string{
-		"gemini-2.0-flash",
-		"gemini-2.5-flash-preview",
-		"gemini-1.5-flash",
+		"gemini-3.8-flash",
+		"gemini-3.5-flash-lite",
 	}
 
 	fmt.Println("\nSwitch to a different model? (each has separate quota)")
