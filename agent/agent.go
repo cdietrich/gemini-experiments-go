@@ -69,7 +69,7 @@ func WithPermissions(perms *permissions.Manager) Option {
 func New(client *genai.Client, registry *tools.Registry, opts ...Option) *Agent {
 	a := &Agent{
 		client:   client,
-		model:    "gemini-3.8-flash",
+		model:    "gemini-3.6-flash",
 		registry: registry,
 		maxTurns: 20,
 		systemMsg: `You are a helpful coding assistant with access to tools for file operations, shell commands, and code search.
@@ -226,7 +226,7 @@ func (a *Agent) generateWithRetry(ctx context.Context) (*genai.GenerateContentRe
 
 func (a *Agent) promptModelSwitch() string {
 	fallbackModels := []string{
-		"gemini-3.6-flash",
+		"gemini-3.8-flash",
 		"gemini-3.5-flash-lite",
 		"gemini-3.1-flash-lite",
 	}

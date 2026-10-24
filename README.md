@@ -57,12 +57,12 @@ When a tool is called, you'll be prompted:
 
 ### Models
 
-Default model is `gemini-3.8-flash`. Override it with `-model`:
+Default model is `gemini-3.6-flash`. Override it with `-model`:
 
 | Model | Input/1M | Output/1M | Notes |
 |-------|----------|-----------|-------|
-| gemini-3.8-flash | $0.75 | $3.75 | Default, free tier eligible |
-| gemini-3.6-flash | $0.75 | $3.75 | Previous-gen Flash, free tier eligible |
+| gemini-3.6-flash | $0.75 | $3.75 | Default, free tier eligible |
+| gemini-3.8-flash | $0.75 | $3.75 | Newer Flash, free tier eligible |
 | gemini-3.5-flash-lite | $0.30 | $2.50 | Cheapest current Flash-Lite |
 | gemini-3.1-flash-lite | $0.25 | $1.50 | Older, supported until May 2027 |
 | gemini-3.1-pro-preview | $2.00 | $12.00 | Pro tier, no free tier |
