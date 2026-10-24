@@ -61,16 +61,15 @@ Default model is `gemini-3.6-flash`. Override it with `-model`:
 
 | Model | Input/1M | Output/1M | Notes |
 |-------|----------|-----------|-------|
-| gemini-3.6-flash | $0.75 | $3.75 | Default, free tier eligible |
-| gemini-3.8-flash | $0.75 | $3.75 | Newer Flash, free tier eligible |
+| gemini-3.6-flash | $0.75 | $3.75 | Default |
+| gemini-3.8-flash | $0.75 | $3.75 | Newer Flash |
 | gemini-3.5-flash-lite | $0.30 | $2.50 | Cheapest current Flash-Lite |
-| gemini-3.1-pro-preview | $2.00 | $12.00 | Pro tier, no free tier |
-| gemini-4-argon | $2.00 | $10.00 | Flagship reasoning, no free tier |
 
-Prices are paid-tier Standard rates as of October 2026. Flash pricing is
-promotional through December 31, 2026 and doubles on January 1, 2027. See
-the [pricing page](https://ai.google.dev/gemini-api/docs/pricing) for the
-current numbers.
+All three are free tier eligible. Prices are paid-tier Standard rates as of
+October 2026. Flash pricing is promotional through December 31, 2026 and
+doubles on January 1, 2027. Paid-only models (Pro, Argon) are intentionally
+not listed; see the [models page](https://ai.google.dev/gemini-api/docs/models)
+if you want to point `-model` at one of them.
 
 ## Commands
 
