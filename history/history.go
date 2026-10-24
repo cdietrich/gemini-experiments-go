@@ -81,6 +81,9 @@ func (h *History) GetMessages() []*genai.Content {
 }
 
 func DefaultPath() string {
-	home, _ := os.UserHomeDir()
+	home, err := os.UserHomeDir()
+	if err != nil {
+		return filepath.Join(".config", "gemini-agent", "history.json")
+	}
 	return filepath.Join(home, ".config", "gemini-agent", "history.json")
 }
