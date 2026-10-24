@@ -14,6 +14,8 @@ A terminal-based coding agent powered by Google's Gemini AI. It can read, write,
 
 ## Installation
 
+Requires Go 1.26.10 or newer.
+
 ```bash
 go build -o gemini-agent .
 ```
